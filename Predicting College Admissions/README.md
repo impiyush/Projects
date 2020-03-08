@@ -21,4 +21,5 @@ In this project, I use *Supervised Machine Learning* to predict the total number
 
 *This project was accepted as the capstone project for my Udacity Machine Learning Nanodegree.*
 
+**Date**: November 25, 2018
 
