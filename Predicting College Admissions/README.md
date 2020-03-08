@@ -3,7 +3,7 @@
 ### Abstract
 We all have been in the situation where we are searching for colleges to apply for. These days, there are a lot of colleges around and each of them has a different acceptance criterion for admissions. While filling out our application we want to make sure that we choose a college with a higher probability of accepting our application - one, because the application costs are high and second, because we want to apply to a college which admits in the range of our test scores.
 
-In this project, I use *Supervised Machine Learning* to predict the number of admissions in a college based on the number of applicants providing test scores (SAT/ACT) and the scores itself.
+In this project, I use *Supervised Machine Learning* to predict the total number of admissions in a college based on the number of applicants providing test scores (SAT/ACT) and the scores itself.
 
 ### Outline
 
