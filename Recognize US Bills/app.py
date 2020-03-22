@@ -10,7 +10,7 @@ from gevent.pywsgi import WSGIServer
 import tensorflow as tf
 from tensorflow import keras
 
-from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from tensorflow.keras.applications.imagenet_utils import preprocess_input
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
@@ -77,7 +77,6 @@ def predict():
         # get the prediction with highest probability
         pred_proba = np.amax(preds)    # Max probability
         pred_proba_ind = np.argmax(preds)    # Index of Max probability
-        
         pred_class = decode_preds(pred_proba_ind, pred_proba)
 
         # Serialize the result, you can add additional fields
