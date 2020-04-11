@@ -24,7 +24,7 @@ services:
     container_name: usbills
     environment:
         - FLASK_APP=/usr/src/app/app.py
-    command: flask run --host=0.0.0.0
+    command: python /usr/src/app/app.py
     ports:
         - 8080:5000
     restart: unless-stopped
