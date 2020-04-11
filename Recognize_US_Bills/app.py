@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 
 # Load the model parameters
-MODEL_PATH = 'model/best-model'
+MODEL_PATH = 'model/best-model.tf'
 
 # Load your own trained model
 model = load_model(MODEL_PATH, compile=False)
