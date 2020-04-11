@@ -18,16 +18,16 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from util import base64_to_pil
 
-
+print(tf.__version__)
 # Declare a flask app
 app = Flask(__name__)
 
 
 # Load the model parameters
-MODEL_PATH = 'model/best-model.h5'
+MODEL_PATH = 'model/best-model'
 
 # Load your own trained model
-model = load_model(MODEL_PATH)
+model = load_model(MODEL_PATH, compile=False)
 model._make_predict_function()          # Necessary
 print('Model loaded. Start serving...')
 
@@ -90,7 +90,7 @@ def predict():
     return None
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # Serve the app with gevent
-    http_server = WSGIServer(('0.0.0.0', 5000), app)
-    http_server.serve_forever()
+    # http_server = WSGIServer(('0.0.0.0', 5000), app)
+    # http_server.serve_forever()

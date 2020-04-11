@@ -5,10 +5,11 @@ services:
     image: nginx:alpine
     expose:
       - 80
-      - 5000
     container_name: nginx-projects
+    depends_on:
+      - usbills
     volumes:
-      - ./nginx-projects.conf:/etc/nginx/conf.d/nginx-projects.conf:ro
+      - ./nginx-projects.conf:/etc/nginx/conf.d/default.conf
     environment:
       - VIRTUAL_HOST=projects.impiyush.com
       - VIRTUAL_PORT=80
@@ -21,14 +22,18 @@ services:
         context: ./Recognize_US_Bills
         dockerfile: Dockerfile
     container_name: usbills
+    environment:
+        - FLASK_APP=/usr/src/app/app.py
+    command: flask run --host=0.0.0.0
     ports:
-        - 5000:5000
+        - 8080:5000
     restart: unless-stopped
 
 networks:
   default:
     external:
       name: nginx-proxy
+
 
 
       
