@@ -53,3 +53,4 @@
 - [Deploy Keras Model with Flask as Web App in 10 Minutes](https://github.com/mtobeiyf/keras-flask-deploy-webapp)
 - [TensorFlow 2.0 Tutorial 01: Basic Image Classification](https://lambdalabs.com/blog/tensorflow-2-0-tutorial-01-image-classification-basics/)
 - [Trasfer Learning with a pretrained ConvNet](https://www.tensorflow.org/tutorials/images/transfer_learning)
+- [Nginx as reverse proxy for flask app using docker](https://dev.to/ishankhare07/nginx-as-reverse-proxy-for-a-flask-app-using-docker-3ajg)

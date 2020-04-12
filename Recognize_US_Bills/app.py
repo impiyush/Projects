@@ -2,7 +2,7 @@ import os
 import sys
 
 # Flask
-from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
+from flask import Flask, redirect, url_for, request, render_template, Response, jsonify
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -18,7 +18,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from util import base64_to_pil
 
-print(tf.__version__)
+# print(tf.__version__)
 # Declare a flask app
 app = Flask(__name__)
 
