@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  nginx-projects:
+    image: nginx:alpine
+    expose:
+      - 80
+    container_name: nginx-projects
+    depends_on:
+      - usbills
+    volumes:
+      - ./nginx-projects.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      - VIRTUAL_HOST=projects.impiyush.com
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=projects.impiyush.com
+      - LETSENCRYPT_EMAIL=piyush@impiyush.com
+    restart: unless-stopped
+
+  usbills:
+    build:
+        context: ./Recognize_US_Bills
+        dockerfile: Dockerfile
+    container_name: usbills
+    environment:
+        - FLASK_APP=/usr/src/app/app.py
+    command: python /usr/src/app/app.py
+    ports:
+        - 8080:5000
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+
+
+      

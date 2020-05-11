@@ -45,8 +45,7 @@ var loader = document.getElementById("loader");
 function submitImage() {
   // action for the submit button
   //console.log("submit");
-
-  if (!imageDisplay.src || !imageDisplay.src.startsWith("data")) {
+  if (!imageDisplay.src || !imageDisplay.src.startsWith("data:image")) {
     window.alert("Please select an image before submit.");
     return;
   }

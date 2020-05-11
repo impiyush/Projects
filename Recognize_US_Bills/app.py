@@ -2,7 +2,7 @@ import os
 import sys
 
 # Flask
-from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
+from flask import Flask, redirect, url_for, request, render_template, Response, jsonify
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -18,13 +18,13 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from util import base64_to_pil
 
-
+# print(tf.__version__)
 # Declare a flask app
 app = Flask(__name__)
 
 
 # Load the model parameters
-MODEL_PATH = 'model/usbills_resnet50v2_model.h5'
+MODEL_PATH = 'model/best-model.tf'
 
 # Load your own trained model
 model = load_model(MODEL_PATH)
@@ -37,7 +37,6 @@ def model_predict(img, model):
 
     # Preprocessing the image
     x = image.img_to_array(img)
-    # x = np.true_divide(x, 255)
     x = np.expand_dims(x, axis=0)
 
     # Be careful how your trained model deals with the input
@@ -49,11 +48,16 @@ def model_predict(img, model):
 
 
 def decode_preds(prob_index, prob):
-    classes = ['US $1', 'US $10', 'US $100', 'US $20', 'US $5', 'US $50']
-    if prob >= 0.5:
-        return classes[prob_index]
+    classes = ['Other', 'US $1', 'US $10',
+                'US $100', 'US $20', 'US $5', 'US $50']
+    most_probable_class = classes[prob_index]
+    if prob >= 0.6 and most_probable_class != 0:
+        if most_probable_class != 0:
+            return classes[prob_index]
+        else:
+            return 'Not a US Dollar bill!'
     else:
-        return 'Cannot be identified. Please try again!'
+        return 'Cannot be identified correctly. Please try again!'
 
 
 @app.route('/', methods=['GET'])
@@ -75,6 +79,7 @@ def predict():
         preds = model_predict(img, model)
 
         # get the prediction with highest probability
+        # print(preds)
         pred_proba = np.amax(preds)    # Max probability
         pred_proba_ind = np.argmax(preds)    # Index of Max probability
         pred_class = decode_preds(pred_proba_ind, pred_proba)
@@ -85,7 +90,7 @@ def predict():
     return None
 
 
-# if __name__ == '__main__':
-#     # Serve the app with gevent
-#     http_server = WSGIServer(('0.0.0.0', 5000), app)
-#     http_server.serve_forever()
+if __name__ == '__main__':
+    # Serve the app with gevent
+    http_server = WSGIServer(('0.0.0.0', 5000), app)
+    http_server.serve_forever()
