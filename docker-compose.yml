@@ -14,7 +14,7 @@ services:
       - VIRTUAL_HOST=projects.impiyush.com
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=projects.impiyush.com
-      - LETSENCRYPT_EMAIL=piyush@impiyush.com
+      - LETSENCRYPT_EMAIL=<email>
     restart: unless-stopped
 
   usbills:
