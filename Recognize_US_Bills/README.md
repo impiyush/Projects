@@ -2,6 +2,11 @@
 
 ***A Flask app to detect the US dollar bill in the image.***
 
+## Blog Posts
+
+- [End-to-End Machine Learning Project: Part-1 (Model Training)](https://towardsdatascience.com/end-to-end-machine-learning-project-part-1-806d04da8deb)
+- [End-to-End Machine Learning Project: Part-2 (Model Deployment)](https://towardsdatascience.com/end-to-end-machine-learning-project-627ed48f8109)
+
 ## Dataset
 
 - Images of US Dollar bills
